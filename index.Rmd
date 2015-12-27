@@ -35,13 +35,19 @@ plot(cars)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 Include library for the machine learning
-```{r library(caret);libraray(use)}
-library(caret);libraray(use)
+```{r}
+library(caret)
+library(useful)
 ```
 
-Read the data from repository
+Read the train and test data
 ```{r datatrain = read.csv("pml-training.csv")}
 datatrain = read.csv("pml-training.csv")
+datatest = read.csv("pml-testing.csv")
+```
+
+Data exploration to understand the data range of each feature
+```{r summary(datatrain)}
 
 ```
 
