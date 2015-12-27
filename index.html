@@ -10,7 +10,7 @@
 
 <meta name="author" content="Tan Woei Ming" />
 
-<meta name="date" content="2015-12-24" />
+<meta name="date" content="2015-12-27" />
 
 <title>Practical Machine Learning Course Project</title>
 
@@ -64,35 +64,1586 @@ img {
 <div id="header">
 <h1 class="title">Practical Machine Learning Course Project</h1>
 <h4 class="author"><em>Tan Woei Ming</em></h4>
-<h4 class="date"><em>24 December 2015</em></h4>
+<h4 class="date"><em>27 December 2015</em></h4>
 </div>
 
 
-<p>Path to repository: <a href="http://twming.github.io/practicalmachinelearning/" class="uri">http://twming.github.io/practicalmachinelearning/</a></p>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
-<p>You can also embed plots, for example:</p>
-<p>```</p>
-<p><img src="data:image/png;base64,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" title alt width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
-<p>Include library for the machine learning</p>
+<div id="a.-goal" class="section level1">
+<h1><strong>A. Goal:</strong></h1>
+<p>To predict the manner in which they did the exercise, which is the “classe” variable in the training set.</p>
+</div>
+<div id="b.-r-code-and-steps-to-buildtrain-a-model" class="section level1">
+<h1><strong>B. R code and steps to build/train a model:</strong></h1>
+<div id="b.1-data-exploration" class="section level2">
+<h2><strong>B.1 Data exploration</strong></h2>
+<p>Include the R library for the machine learning</p>
 <pre class="r"><code>library(caret)</code></pre>
 <pre><code>## Warning: package 'caret' was built under R version 3.2.3</code></pre>
 <pre><code>## Loading required package: lattice
 ## Loading required package: ggplot2</code></pre>
 <pre class="r"><code>library(useful)</code></pre>
-<p>Read the train and test data</p>
-<pre class="r"><code>datatrain = read.csv(&quot;pml-training.csv&quot;)
-datatest = read.csv(&quot;pml-testing.csv&quot;)</code></pre>
-<p>Data exploration to understand the data range of each feature</p>
+<p>Read in the training data, which consist of 19622 records, with 160 variables, including the “classe”s.</p>
+<pre class="r"><code>datatrain = read.csv(&quot;pml-training.csv&quot;)</code></pre>
+<p>Data exploration to understand the each variable, or feature in the model. Remove the features with NA/NULL from the model building</p>
+<pre class="r"><code>summary(datatrain)</code></pre>
+<pre><code>##        X            user_name    raw_timestamp_part_1 raw_timestamp_part_2
+##  Min.   :    1   adelmo  :3892   Min.   :1.322e+09    Min.   :   294      
+##  1st Qu.: 4906   carlitos:3112   1st Qu.:1.323e+09    1st Qu.:252912      
+##  Median : 9812   charles :3536   Median :1.323e+09    Median :496380      
+##  Mean   : 9812   eurico  :3070   Mean   :1.323e+09    Mean   :500656      
+##  3rd Qu.:14717   jeremy  :3402   3rd Qu.:1.323e+09    3rd Qu.:751891      
+##  Max.   :19622   pedro   :2610   Max.   :1.323e+09    Max.   :998801      
+##                                                                           
+##           cvtd_timestamp  new_window    num_window      roll_belt     
+##  28/11/2011 14:14: 1498   no :19216   Min.   :  1.0   Min.   :-28.90  
+##  05/12/2011 11:24: 1497   yes:  406   1st Qu.:222.0   1st Qu.:  1.10  
+##  30/11/2011 17:11: 1440               Median :424.0   Median :113.00  
+##  05/12/2011 11:25: 1425               Mean   :430.6   Mean   : 64.41  
+##  02/12/2011 14:57: 1380               3rd Qu.:644.0   3rd Qu.:123.00  
+##  02/12/2011 13:34: 1375               Max.   :864.0   Max.   :162.00  
+##  (Other)         :11007                                               
+##    pitch_belt          yaw_belt       total_accel_belt kurtosis_roll_belt
+##  Min.   :-55.8000   Min.   :-180.00   Min.   : 0.00             :19216   
+##  1st Qu.:  1.7600   1st Qu.: -88.30   1st Qu.: 3.00    #DIV/0!  :   10   
+##  Median :  5.2800   Median : -13.00   Median :17.00    -1.908453:    2   
+##  Mean   :  0.3053   Mean   : -11.21   Mean   :11.31    -0.016850:    1   
+##  3rd Qu.: 14.9000   3rd Qu.:  12.90   3rd Qu.:18.00    -0.021024:    1   
+##  Max.   : 60.3000   Max.   : 179.00   Max.   :29.00    -0.025513:    1   
+##                                                        (Other)  :  391   
+##  kurtosis_picth_belt kurtosis_yaw_belt skewness_roll_belt
+##           :19216            :19216              :19216   
+##  #DIV/0!  :   32     #DIV/0!:  406     #DIV/0!  :    9   
+##  47.000000:    4                       0.000000 :    4   
+##  -0.150950:    3                       0.422463 :    2   
+##  -0.684748:    3                       -0.003095:    1   
+##  -1.750749:    3                       -0.010002:    1   
+##  (Other)  :  361                       (Other)  :  389   
+##  skewness_roll_belt.1 skewness_yaw_belt max_roll_belt     max_picth_belt 
+##           :19216             :19216     Min.   :-94.300   Min.   : 3.00  
+##  #DIV/0!  :   32      #DIV/0!:  406     1st Qu.:-88.000   1st Qu.: 5.00  
+##  0.000000 :    4                        Median : -5.100   Median :18.00  
+##  -2.156553:    3                        Mean   : -6.667   Mean   :12.92  
+##  -3.072669:    3                        3rd Qu.: 18.500   3rd Qu.:19.00  
+##  -6.324555:    3                        Max.   :180.000   Max.   :30.00  
+##  (Other)  :  361                        NA's   :19216     NA's   :19216  
+##   max_yaw_belt   min_roll_belt     min_pitch_belt   min_yaw_belt  
+##         :19216   Min.   :-180.00   Min.   : 0.00          :19216  
+##  -1.1   :   30   1st Qu.: -88.40   1st Qu.: 3.00   -1.1   :   30  
+##  -1.4   :   29   Median :  -7.85   Median :16.00   -1.4   :   29  
+##  -1.2   :   26   Mean   : -10.44   Mean   :10.76   -1.2   :   26  
+##  -0.9   :   24   3rd Qu.:   9.05   3rd Qu.:17.00   -0.9   :   24  
+##  -1.3   :   22   Max.   : 173.00   Max.   :23.00   -1.3   :   22  
+##  (Other):  275   NA's   :19216     NA's   :19216   (Other):  275  
+##  amplitude_roll_belt amplitude_pitch_belt amplitude_yaw_belt
+##  Min.   :  0.000     Min.   : 0.000              :19216     
+##  1st Qu.:  0.300     1st Qu.: 1.000       #DIV/0!:   10     
+##  Median :  1.000     Median : 1.000       0.00   :   12     
+##  Mean   :  3.769     Mean   : 2.167       0.0000 :  384     
+##  3rd Qu.:  2.083     3rd Qu.: 2.000                         
+##  Max.   :360.000     Max.   :12.000                         
+##  NA's   :19216       NA's   :19216                          
+##  var_total_accel_belt avg_roll_belt    stddev_roll_belt var_roll_belt    
+##  Min.   : 0.000       Min.   :-27.40   Min.   : 0.000   Min.   :  0.000  
+##  1st Qu.: 0.100       1st Qu.:  1.10   1st Qu.: 0.200   1st Qu.:  0.000  
+##  Median : 0.200       Median :116.35   Median : 0.400   Median :  0.100  
+##  Mean   : 0.926       Mean   : 68.06   Mean   : 1.337   Mean   :  7.699  
+##  3rd Qu.: 0.300       3rd Qu.:123.38   3rd Qu.: 0.700   3rd Qu.:  0.500  
+##  Max.   :16.500       Max.   :157.40   Max.   :14.200   Max.   :200.700  
+##  NA's   :19216        NA's   :19216    NA's   :19216    NA's   :19216    
+##  avg_pitch_belt    stddev_pitch_belt var_pitch_belt    avg_yaw_belt     
+##  Min.   :-51.400   Min.   :0.000     Min.   : 0.000   Min.   :-138.300  
+##  1st Qu.:  2.025   1st Qu.:0.200     1st Qu.: 0.000   1st Qu.: -88.175  
+##  Median :  5.200   Median :0.400     Median : 0.100   Median :  -6.550  
+##  Mean   :  0.520   Mean   :0.603     Mean   : 0.766   Mean   :  -8.831  
+##  3rd Qu.: 15.775   3rd Qu.:0.700     3rd Qu.: 0.500   3rd Qu.:  14.125  
+##  Max.   : 59.700   Max.   :4.000     Max.   :16.200   Max.   : 173.500  
+##  NA's   :19216     NA's   :19216     NA's   :19216    NA's   :19216     
+##  stddev_yaw_belt    var_yaw_belt        gyros_belt_x      
+##  Min.   :  0.000   Min.   :    0.000   Min.   :-1.040000  
+##  1st Qu.:  0.100   1st Qu.:    0.010   1st Qu.:-0.030000  
+##  Median :  0.300   Median :    0.090   Median : 0.030000  
+##  Mean   :  1.341   Mean   :  107.487   Mean   :-0.005592  
+##  3rd Qu.:  0.700   3rd Qu.:    0.475   3rd Qu.: 0.110000  
+##  Max.   :176.600   Max.   :31183.240   Max.   : 2.220000  
+##  NA's   :19216     NA's   :19216                          
+##   gyros_belt_y       gyros_belt_z      accel_belt_x       accel_belt_y   
+##  Min.   :-0.64000   Min.   :-1.4600   Min.   :-120.000   Min.   :-69.00  
+##  1st Qu.: 0.00000   1st Qu.:-0.2000   1st Qu.: -21.000   1st Qu.:  3.00  
+##  Median : 0.02000   Median :-0.1000   Median : -15.000   Median : 35.00  
+##  Mean   : 0.03959   Mean   :-0.1305   Mean   :  -5.595   Mean   : 30.15  
+##  3rd Qu.: 0.11000   3rd Qu.:-0.0200   3rd Qu.:  -5.000   3rd Qu.: 61.00  
+##  Max.   : 0.64000   Max.   : 1.6200   Max.   :  85.000   Max.   :164.00  
+##                                                                          
+##   accel_belt_z     magnet_belt_x   magnet_belt_y   magnet_belt_z   
+##  Min.   :-275.00   Min.   :-52.0   Min.   :354.0   Min.   :-623.0  
+##  1st Qu.:-162.00   1st Qu.:  9.0   1st Qu.:581.0   1st Qu.:-375.0  
+##  Median :-152.00   Median : 35.0   Median :601.0   Median :-320.0  
+##  Mean   : -72.59   Mean   : 55.6   Mean   :593.7   Mean   :-345.5  
+##  3rd Qu.:  27.00   3rd Qu.: 59.0   3rd Qu.:610.0   3rd Qu.:-306.0  
+##  Max.   : 105.00   Max.   :485.0   Max.   :673.0   Max.   : 293.0  
+##                                                                    
+##     roll_arm         pitch_arm          yaw_arm          total_accel_arm
+##  Min.   :-180.00   Min.   :-88.800   Min.   :-180.0000   Min.   : 1.00  
+##  1st Qu.: -31.77   1st Qu.:-25.900   1st Qu.: -43.1000   1st Qu.:17.00  
+##  Median :   0.00   Median :  0.000   Median :   0.0000   Median :27.00  
+##  Mean   :  17.83   Mean   : -4.612   Mean   :  -0.6188   Mean   :25.51  
+##  3rd Qu.:  77.30   3rd Qu.: 11.200   3rd Qu.:  45.8750   3rd Qu.:33.00  
+##  Max.   : 180.00   Max.   : 88.500   Max.   : 180.0000   Max.   :66.00  
+##                                                                         
+##  var_accel_arm     avg_roll_arm     stddev_roll_arm    var_roll_arm      
+##  Min.   :  0.00   Min.   :-166.67   Min.   :  0.000   Min.   :    0.000  
+##  1st Qu.:  9.03   1st Qu.: -38.37   1st Qu.:  1.376   1st Qu.:    1.898  
+##  Median : 40.61   Median :   0.00   Median :  5.702   Median :   32.517  
+##  Mean   : 53.23   Mean   :  12.68   Mean   : 11.201   Mean   :  417.264  
+##  3rd Qu.: 75.62   3rd Qu.:  76.33   3rd Qu.: 14.921   3rd Qu.:  222.647  
+##  Max.   :331.70   Max.   : 163.33   Max.   :161.964   Max.   :26232.208  
+##  NA's   :19216    NA's   :19216     NA's   :19216     NA's   :19216      
+##  avg_pitch_arm     stddev_pitch_arm var_pitch_arm       avg_yaw_arm      
+##  Min.   :-81.773   Min.   : 0.000   Min.   :   0.000   Min.   :-173.440  
+##  1st Qu.:-22.770   1st Qu.: 1.642   1st Qu.:   2.697   1st Qu.: -29.198  
+##  Median :  0.000   Median : 8.133   Median :  66.146   Median :   0.000  
+##  Mean   : -4.901   Mean   :10.383   Mean   : 195.864   Mean   :   2.359  
+##  3rd Qu.:  8.277   3rd Qu.:16.327   3rd Qu.: 266.576   3rd Qu.:  38.185  
+##  Max.   : 75.659   Max.   :43.412   Max.   :1884.565   Max.   : 152.000  
+##  NA's   :19216     NA's   :19216    NA's   :19216      NA's   :19216     
+##  stddev_yaw_arm     var_yaw_arm         gyros_arm_x      
+##  Min.   :  0.000   Min.   :    0.000   Min.   :-6.37000  
+##  1st Qu.:  2.577   1st Qu.:    6.642   1st Qu.:-1.33000  
+##  Median : 16.682   Median :  278.309   Median : 0.08000  
+##  Mean   : 22.270   Mean   : 1055.933   Mean   : 0.04277  
+##  3rd Qu.: 35.984   3rd Qu.: 1294.850   3rd Qu.: 1.57000  
+##  Max.   :177.044   Max.   :31344.568   Max.   : 4.87000  
+##  NA's   :19216     NA's   :19216                         
+##   gyros_arm_y       gyros_arm_z       accel_arm_x       accel_arm_y    
+##  Min.   :-3.4400   Min.   :-2.3300   Min.   :-404.00   Min.   :-318.0  
+##  1st Qu.:-0.8000   1st Qu.:-0.0700   1st Qu.:-242.00   1st Qu.: -54.0  
+##  Median :-0.2400   Median : 0.2300   Median : -44.00   Median :  14.0  
+##  Mean   :-0.2571   Mean   : 0.2695   Mean   : -60.24   Mean   :  32.6  
+##  3rd Qu.: 0.1400   3rd Qu.: 0.7200   3rd Qu.:  84.00   3rd Qu.: 139.0  
+##  Max.   : 2.8400   Max.   : 3.0200   Max.   : 437.00   Max.   : 308.0  
+##                                                                        
+##   accel_arm_z       magnet_arm_x     magnet_arm_y     magnet_arm_z   
+##  Min.   :-636.00   Min.   :-584.0   Min.   :-392.0   Min.   :-597.0  
+##  1st Qu.:-143.00   1st Qu.:-300.0   1st Qu.:  -9.0   1st Qu.: 131.2  
+##  Median : -47.00   Median : 289.0   Median : 202.0   Median : 444.0  
+##  Mean   : -71.25   Mean   : 191.7   Mean   : 156.6   Mean   : 306.5  
+##  3rd Qu.:  23.00   3rd Qu.: 637.0   3rd Qu.: 323.0   3rd Qu.: 545.0  
+##  Max.   : 292.00   Max.   : 782.0   Max.   : 583.0   Max.   : 694.0  
+##                                                                      
+##  kurtosis_roll_arm kurtosis_picth_arm kurtosis_yaw_arm skewness_roll_arm
+##          :19216            :19216             :19216           :19216   
+##  #DIV/0! :   78    #DIV/0! :   80     #DIV/0! :   11   #DIV/0! :   77   
+##  -0.02438:    1    -0.00484:    1     0.55844 :    2   -0.00051:    1   
+##  -0.04190:    1    -0.01311:    1     0.65132 :    2   -0.00696:    1   
+##  -0.05051:    1    -0.02967:    1     -0.01548:    1   -0.01884:    1   
+##  -0.05695:    1    -0.07394:    1     -0.01749:    1   -0.03359:    1   
+##  (Other) :  324    (Other) :  322     (Other) :  389   (Other) :  325   
+##  skewness_pitch_arm skewness_yaw_arm  max_roll_arm     max_picth_arm     
+##          :19216             :19216   Min.   :-73.100   Min.   :-173.000  
+##  #DIV/0! :   80     #DIV/0! :   11   1st Qu.: -0.175   1st Qu.:  -1.975  
+##  -0.00184:    1     -1.62032:    2   Median :  4.950   Median :  23.250  
+##  -0.01185:    1     0.55053 :    2   Mean   : 11.236   Mean   :  35.751  
+##  -0.01247:    1     -0.00311:    1   3rd Qu.: 26.775   3rd Qu.:  95.975  
+##  -0.02063:    1     -0.00562:    1   Max.   : 85.500   Max.   : 180.000  
+##  (Other) :  322     (Other) :  389   NA's   :19216     NA's   :19216     
+##   max_yaw_arm     min_roll_arm    min_pitch_arm      min_yaw_arm   
+##  Min.   : 4.00   Min.   :-89.10   Min.   :-180.00   Min.   : 1.00  
+##  1st Qu.:29.00   1st Qu.:-41.98   1st Qu.: -72.62   1st Qu.: 8.00  
+##  Median :34.00   Median :-22.45   Median : -33.85   Median :13.00  
+##  Mean   :35.46   Mean   :-21.22   Mean   : -33.92   Mean   :14.66  
+##  3rd Qu.:41.00   3rd Qu.:  0.00   3rd Qu.:   0.00   3rd Qu.:19.00  
+##  Max.   :65.00   Max.   : 66.40   Max.   : 152.00   Max.   :38.00  
+##  NA's   :19216   NA's   :19216    NA's   :19216     NA's   :19216  
+##  amplitude_roll_arm amplitude_pitch_arm amplitude_yaw_arm
+##  Min.   :  0.000    Min.   :  0.000     Min.   : 0.00    
+##  1st Qu.:  5.425    1st Qu.:  9.925     1st Qu.:13.00    
+##  Median : 28.450    Median : 54.900     Median :22.00    
+##  Mean   : 32.452    Mean   : 69.677     Mean   :20.79    
+##  3rd Qu.: 50.960    3rd Qu.:115.175     3rd Qu.:28.75    
+##  Max.   :119.500    Max.   :360.000     Max.   :52.00    
+##  NA's   :19216      NA's   :19216       NA's   :19216    
+##  roll_dumbbell     pitch_dumbbell     yaw_dumbbell     
+##  Min.   :-153.71   Min.   :-149.59   Min.   :-150.871  
+##  1st Qu.: -18.49   1st Qu.: -40.89   1st Qu.: -77.644  
+##  Median :  48.17   Median : -20.96   Median :  -3.324  
+##  Mean   :  23.84   Mean   : -10.78   Mean   :   1.674  
+##  3rd Qu.:  67.61   3rd Qu.:  17.50   3rd Qu.:  79.643  
+##  Max.   : 153.55   Max.   : 149.40   Max.   : 154.952  
+##                                                        
+##  kurtosis_roll_dumbbell kurtosis_picth_dumbbell kurtosis_yaw_dumbbell
+##         :19216                 :19216                  :19216        
+##  #DIV/0!:    5          -0.5464:    2           #DIV/0!:  406        
+##  -0.2583:    2          -0.9334:    2                                
+##  -0.3705:    2          -2.0833:    2                                
+##  -0.5855:    2          -2.0851:    2                                
+##  -2.0851:    2          -2.0889:    2                                
+##  (Other):  393          (Other):  396                                
+##  skewness_roll_dumbbell skewness_pitch_dumbbell skewness_yaw_dumbbell
+##         :19216                 :19216                  :19216        
+##  #DIV/0!:    4          -0.2328:    2           #DIV/0!:  406        
+##  -0.9324:    2          -0.3521:    2                                
+##  0.1110 :    2          -0.7036:    2                                
+##  1.0312 :    2          0.1090 :    2                                
+##  -0.0082:    1          1.0326 :    2                                
+##  (Other):  395          (Other):  396                                
+##  max_roll_dumbbell max_picth_dumbbell max_yaw_dumbbell min_roll_dumbbell
+##  Min.   :-70.10    Min.   :-112.90           :19216    Min.   :-149.60  
+##  1st Qu.:-27.15    1st Qu.: -66.70    -0.6   :   20    1st Qu.: -59.67  
+##  Median : 14.85    Median :  40.05    0.2    :   19    Median : -43.55  
+##  Mean   : 13.76    Mean   :  32.75    -0.8   :   18    Mean   : -41.24  
+##  3rd Qu.: 50.58    3rd Qu.: 133.22    -0.3   :   16    3rd Qu.: -25.20  
+##  Max.   :137.00    Max.   : 155.00    -0.2   :   15    Max.   :  73.20  
+##  NA's   :19216     NA's   :19216      (Other):  318    NA's   :19216    
+##  min_pitch_dumbbell min_yaw_dumbbell amplitude_roll_dumbbell
+##  Min.   :-147.00           :19216    Min.   :  0.00         
+##  1st Qu.: -91.80    -0.6   :   20    1st Qu.: 14.97         
+##  Median : -66.15    0.2    :   19    Median : 35.05         
+##  Mean   : -33.18    -0.8   :   18    Mean   : 55.00         
+##  3rd Qu.:  21.20    -0.3   :   16    3rd Qu.: 81.04         
+##  Max.   : 120.90    -0.2   :   15    Max.   :256.48         
+##  NA's   :19216      (Other):  318    NA's   :19216          
+##  amplitude_pitch_dumbbell amplitude_yaw_dumbbell total_accel_dumbbell
+##  Min.   :  0.00                  :19216          Min.   : 0.00       
+##  1st Qu.: 17.06           #DIV/0!:    5          1st Qu.: 4.00       
+##  Median : 41.73           0.00   :  401          Median :10.00       
+##  Mean   : 65.93                                  Mean   :13.72       
+##  3rd Qu.: 99.55                                  3rd Qu.:19.00       
+##  Max.   :273.59                                  Max.   :58.00       
+##  NA's   :19216                                                       
+##  var_accel_dumbbell avg_roll_dumbbell stddev_roll_dumbbell
+##  Min.   :  0.000    Min.   :-128.96   Min.   :  0.000     
+##  1st Qu.:  0.378    1st Qu.: -12.33   1st Qu.:  4.639     
+##  Median :  1.000    Median :  48.23   Median : 12.204     
+##  Mean   :  4.388    Mean   :  23.86   Mean   : 20.761     
+##  3rd Qu.:  3.434    3rd Qu.:  64.37   3rd Qu.: 26.356     
+##  Max.   :230.428    Max.   : 125.99   Max.   :123.778     
+##  NA's   :19216      NA's   :19216     NA's   :19216       
+##  var_roll_dumbbell  avg_pitch_dumbbell stddev_pitch_dumbbell
+##  Min.   :    0.00   Min.   :-70.73     Min.   : 0.000       
+##  1st Qu.:   21.52   1st Qu.:-42.00     1st Qu.: 3.482       
+##  Median :  148.95   Median :-19.91     Median : 8.089       
+##  Mean   : 1020.27   Mean   :-12.33     Mean   :13.147       
+##  3rd Qu.:  694.65   3rd Qu.: 13.21     3rd Qu.:19.238       
+##  Max.   :15321.01   Max.   : 94.28     Max.   :82.680       
+##  NA's   :19216      NA's   :19216      NA's   :19216        
+##  var_pitch_dumbbell avg_yaw_dumbbell   stddev_yaw_dumbbell
+##  Min.   :   0.00    Min.   :-117.950   Min.   :  0.000    
+##  1st Qu.:  12.12    1st Qu.: -76.696   1st Qu.:  3.885    
+##  Median :  65.44    Median :  -4.505   Median : 10.264    
+##  Mean   : 350.31    Mean   :   0.202   Mean   : 16.647    
+##  3rd Qu.: 370.11    3rd Qu.:  71.234   3rd Qu.: 24.674    
+##  Max.   :6836.02    Max.   : 134.905   Max.   :107.088    
+##  NA's   :19216      NA's   :19216      NA's   :19216      
+##  var_yaw_dumbbell   gyros_dumbbell_x    gyros_dumbbell_y  
+##  Min.   :    0.00   Min.   :-204.0000   Min.   :-2.10000  
+##  1st Qu.:   15.09   1st Qu.:  -0.0300   1st Qu.:-0.14000  
+##  Median :  105.35   Median :   0.1300   Median : 0.03000  
+##  Mean   :  589.84   Mean   :   0.1611   Mean   : 0.04606  
+##  3rd Qu.:  608.79   3rd Qu.:   0.3500   3rd Qu.: 0.21000  
+##  Max.   :11467.91   Max.   :   2.2200   Max.   :52.00000  
+##  NA's   :19216                                            
+##  gyros_dumbbell_z  accel_dumbbell_x  accel_dumbbell_y  accel_dumbbell_z 
+##  Min.   : -2.380   Min.   :-419.00   Min.   :-189.00   Min.   :-334.00  
+##  1st Qu.: -0.310   1st Qu.: -50.00   1st Qu.:  -8.00   1st Qu.:-142.00  
+##  Median : -0.130   Median :  -8.00   Median :  41.50   Median :  -1.00  
+##  Mean   : -0.129   Mean   : -28.62   Mean   :  52.63   Mean   : -38.32  
+##  3rd Qu.:  0.030   3rd Qu.:  11.00   3rd Qu.: 111.00   3rd Qu.:  38.00  
+##  Max.   :317.000   Max.   : 235.00   Max.   : 315.00   Max.   : 318.00  
+##                                                                         
+##  magnet_dumbbell_x magnet_dumbbell_y magnet_dumbbell_z  roll_forearm      
+##  Min.   :-643.0    Min.   :-3600     Min.   :-262.00   Min.   :-180.0000  
+##  1st Qu.:-535.0    1st Qu.:  231     1st Qu.: -45.00   1st Qu.:  -0.7375  
+##  Median :-479.0    Median :  311     Median :  13.00   Median :  21.7000  
+##  Mean   :-328.5    Mean   :  221     Mean   :  46.05   Mean   :  33.8265  
+##  3rd Qu.:-304.0    3rd Qu.:  390     3rd Qu.:  95.00   3rd Qu.: 140.0000  
+##  Max.   : 592.0    Max.   :  633     Max.   : 452.00   Max.   : 180.0000  
+##                                                                           
+##  pitch_forearm     yaw_forearm      kurtosis_roll_forearm
+##  Min.   :-72.50   Min.   :-180.00          :19216        
+##  1st Qu.:  0.00   1st Qu.: -68.60   #DIV/0!:   84        
+##  Median :  9.24   Median :   0.00   -0.8079:    2        
+##  Mean   : 10.71   Mean   :  19.21   -0.9169:    2        
+##  3rd Qu.: 28.40   3rd Qu.: 110.00   -0.0227:    1        
+##  Max.   : 89.80   Max.   : 180.00   -0.0359:    1        
+##                                     (Other):  316        
+##  kurtosis_picth_forearm kurtosis_yaw_forearm skewness_roll_forearm
+##         :19216                 :19216               :19216        
+##  #DIV/0!:   85          #DIV/0!:  406        #DIV/0!:   83        
+##  -0.0073:    1                               -0.1912:    2        
+##  -0.0442:    1                               -0.4126:    2        
+##  -0.0489:    1                               -0.0004:    1        
+##  -0.0523:    1                               -0.0013:    1        
+##  (Other):  317                               (Other):  317        
+##  skewness_pitch_forearm skewness_yaw_forearm max_roll_forearm
+##         :19216                 :19216        Min.   :-66.60  
+##  #DIV/0!:   85          #DIV/0!:  406        1st Qu.:  0.00  
+##  0.0000 :    4                               Median : 26.80  
+##  -0.6992:    2                               Mean   : 24.49  
+##  -0.0113:    1                               3rd Qu.: 45.95  
+##  -0.0131:    1                               Max.   : 89.80  
+##  (Other):  313                               NA's   :19216   
+##  max_picth_forearm max_yaw_forearm min_roll_forearm  min_pitch_forearm
+##  Min.   :-151.00          :19216   Min.   :-72.500   Min.   :-180.00  
+##  1st Qu.:   0.00   #DIV/0!:   84   1st Qu.: -6.075   1st Qu.:-175.00  
+##  Median : 113.00   -1.2   :   32   Median :  0.000   Median : -61.00  
+##  Mean   :  81.49   -1.3   :   31   Mean   : -0.167   Mean   : -57.57  
+##  3rd Qu.: 174.75   -1.4   :   24   3rd Qu.: 12.075   3rd Qu.:   0.00  
+##  Max.   : 180.00   -1.5   :   24   Max.   : 62.100   Max.   : 167.00  
+##  NA's   :19216     (Other):  211   NA's   :19216     NA's   :19216    
+##  min_yaw_forearm amplitude_roll_forearm amplitude_pitch_forearm
+##         :19216   Min.   :  0.000        Min.   :  0.0          
+##  #DIV/0!:   84   1st Qu.:  1.125        1st Qu.:  2.0          
+##  -1.2   :   32   Median : 17.770        Median : 83.7          
+##  -1.3   :   31   Mean   : 24.653        Mean   :139.1          
+##  -1.4   :   24   3rd Qu.: 39.875        3rd Qu.:350.0          
+##  -1.5   :   24   Max.   :126.000        Max.   :360.0          
+##  (Other):  211   NA's   :19216          NA's   :19216          
+##  amplitude_yaw_forearm total_accel_forearm var_accel_forearm
+##         :19216         Min.   :  0.00      Min.   :  0.000  
+##  #DIV/0!:   84         1st Qu.: 29.00      1st Qu.:  6.759  
+##  0.00   :  322         Median : 36.00      Median : 21.165  
+##                        Mean   : 34.72      Mean   : 33.502  
+##                        3rd Qu.: 41.00      3rd Qu.: 51.240  
+##                        Max.   :108.00      Max.   :172.606  
+##                                            NA's   :19216    
+##  avg_roll_forearm   stddev_roll_forearm var_roll_forearm  
+##  Min.   :-177.234   Min.   :  0.000     Min.   :    0.00  
+##  1st Qu.:  -0.909   1st Qu.:  0.428     1st Qu.:    0.18  
+##  Median :  11.172   Median :  8.030     Median :   64.48  
+##  Mean   :  33.165   Mean   : 41.986     Mean   : 5274.10  
+##  3rd Qu.: 107.132   3rd Qu.: 85.373     3rd Qu.: 7289.08  
+##  Max.   : 177.256   Max.   :179.171     Max.   :32102.24  
+##  NA's   :19216      NA's   :19216       NA's   :19216     
+##  avg_pitch_forearm stddev_pitch_forearm var_pitch_forearm 
+##  Min.   :-68.17    Min.   : 0.000       Min.   :   0.000  
+##  1st Qu.:  0.00    1st Qu.: 0.336       1st Qu.:   0.113  
+##  Median : 12.02    Median : 5.516       Median :  30.425  
+##  Mean   : 11.79    Mean   : 7.977       Mean   : 139.593  
+##  3rd Qu.: 28.48    3rd Qu.:12.866       3rd Qu.: 165.532  
+##  Max.   : 72.09    Max.   :47.745       Max.   :2279.617  
+##  NA's   :19216     NA's   :19216        NA's   :19216     
+##  avg_yaw_forearm   stddev_yaw_forearm var_yaw_forearm    gyros_forearm_x  
+##  Min.   :-155.06   Min.   :  0.000    Min.   :    0.00   Min.   :-22.000  
+##  1st Qu.: -26.26   1st Qu.:  0.524    1st Qu.:    0.27   1st Qu.: -0.220  
+##  Median :   0.00   Median : 24.743    Median :  612.21   Median :  0.050  
+##  Mean   :  18.00   Mean   : 44.854    Mean   : 4639.85   Mean   :  0.158  
+##  3rd Qu.:  85.79   3rd Qu.: 85.817    3rd Qu.: 7368.41   3rd Qu.:  0.560  
+##  Max.   : 169.24   Max.   :197.508    Max.   :39009.33   Max.   :  3.970  
+##  NA's   :19216     NA's   :19216      NA's   :19216                       
+##  gyros_forearm_y     gyros_forearm_z    accel_forearm_x   accel_forearm_y 
+##  Min.   : -7.02000   Min.   : -8.0900   Min.   :-498.00   Min.   :-632.0  
+##  1st Qu.: -1.46000   1st Qu.: -0.1800   1st Qu.:-178.00   1st Qu.:  57.0  
+##  Median :  0.03000   Median :  0.0800   Median : -57.00   Median : 201.0  
+##  Mean   :  0.07517   Mean   :  0.1512   Mean   : -61.65   Mean   : 163.7  
+##  3rd Qu.:  1.62000   3rd Qu.:  0.4900   3rd Qu.:  76.00   3rd Qu.: 312.0  
+##  Max.   :311.00000   Max.   :231.0000   Max.   : 477.00   Max.   : 923.0  
+##                                                                           
+##  accel_forearm_z   magnet_forearm_x  magnet_forearm_y magnet_forearm_z
+##  Min.   :-446.00   Min.   :-1280.0   Min.   :-896.0   Min.   :-973.0  
+##  1st Qu.:-182.00   1st Qu.: -616.0   1st Qu.:   2.0   1st Qu.: 191.0  
+##  Median : -39.00   Median : -378.0   Median : 591.0   Median : 511.0  
+##  Mean   : -55.29   Mean   : -312.6   Mean   : 380.1   Mean   : 393.6  
+##  3rd Qu.:  26.00   3rd Qu.:  -73.0   3rd Qu.: 737.0   3rd Qu.: 653.0  
+##  Max.   : 291.00   Max.   :  672.0   Max.   :1480.0   Max.   :1090.0  
+##                                                                       
+##  classe  
+##  A:5580  
+##  B:3797  
+##  C:3422  
+##  D:3216  
+##  E:3607  
+##          
+## </code></pre>
+</div>
+<div id="b.2-create-the-train-and-cross-validation-data-set" class="section level2">
+<h2><strong>B.2 Create the train and cross validation data set</strong></h2>
+<p>Create the train (75%) and cross validation (25%) data set, called datatrain_clean and datacv_clean respectively.</p>
+<pre class="r"><code>inTrain&lt;-createDataPartition(y=datatrain$classe,p=0.75,list=FALSE)
+datatrain_clean&lt;-datatrain[inTrain,8:160]
+datacv_clean&lt;-datatrain[-inTrain,8:160]</code></pre>
+<p>Load the randomForest library and set the seed to 9747</p>
+<pre class="r"><code>library(useful)
+library(randomForest)</code></pre>
+<pre><code>## Warning: package 'randomForest' was built under R version 3.2.3</code></pre>
+<pre><code>## randomForest 4.6-12
+## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<pre class="r"><code>set.seed(9747)</code></pre>
+<p>Create the parameters for building for x and y in randomForest using the train data. Based on the data exploration, select the feature for model building</p>
+<pre class="r"><code>rfdata&lt;-classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z
+xrf&lt;-build.x(rfdata,data=datatrain_clean)
+yrf&lt;-build.y(rfdata,data=datatrain_clean)</code></pre>
+<p>The response and selected features:</p>
+<pre class="r"><code>rfdata&lt;-classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z</code></pre>
+<p>Create the parameters for building for xtest and ytest in randomForest using the cross validation data.</p>
+<pre class="r"><code>rfdatapred&lt;-classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z
+xrfpred&lt;-build.x(rfdatapred,data=datacv_clean)
+yrfpred&lt;-build.y(rfdatapred,data=datacv_clean)</code></pre>
+</div>
+<div id="b.3-train-the-model" class="section level2">
+<h2><strong>B.3 Train the model</strong></h2>
+<p>Set x and y using the train set, and xtest and ytest using the cross validation set. Set all other parameters as default.</p>
+<pre class="r"><code>rfrtrain&lt;-randomForest(x=xrf,y=yrf,xtest = xrfpred,ytest=yrfpred)
+rfrtrain</code></pre>
+<pre><code>## 
+## Call:
+##  randomForest(x = xrf, y = yrf, xtest = xrfpred, ytest = yrfpred) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 7
+## 
+##         OOB estimate of  error rate: 0.48%
+## Confusion matrix:
+##      A    B    C    D    E  class.error
+## A 4183    2    0    0    0 0.0004778973
+## B   16 2828    4    0    0 0.0070224719
+## C    0   17 2549    1    0 0.0070120764
+## D    1    0   23 2387    1 0.0103648425
+## E    0    0    2    3 2701 0.0018477458
+##                 Test set error rate: 0.43%
+## Confusion matrix:
+##      A   B   C   D   E class.error
+## A 1395   0   0   0   0 0.000000000
+## B    2 944   3   0   0 0.005268704
+## C    0   1 854   0   0 0.001169591
+## D    0   0  12 791   1 0.016169154
+## E    0   0   0   2 899 0.002219756</code></pre>
+<p><strong>The model could achieve &gt;99% accuracy and sample error of 0.49%.</strong></p>
+</div>
+</div>
+<div id="c.-predict-the-test-data" class="section level1">
+<h1><strong>C. Predict the test data</strong></h1>
+<p>Load the test data</p>
+<pre class="r"><code>datatest = read.csv(&quot;pml-testing.csv&quot;)</code></pre>
+<p>Select the features for model fitting, the same features used by the training and cross validation. Also, add a dummy factor variable factor(c(“A”,“B”,“C”,“D”,“E”)) called “classe” for randomForest fitting.</p>
+<pre class="r"><code>datatest_clean&lt;-datatest[,8:159]
+datatest_clean[,&quot;classe&quot;]&lt;-factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;))
+datatest_clean</code></pre>
+<pre><code>##    roll_belt pitch_belt yaw_belt total_accel_belt kurtosis_roll_belt
+## 1     123.00      27.00    -4.75               20                 NA
+## 2       1.02       4.87   -88.90                4                 NA
+## 3       0.87       1.82   -88.50                5                 NA
+## 4     125.00     -41.60   162.00               17                 NA
+## 5       1.35       3.33   -88.60                3                 NA
+## 6      -5.92       1.59   -87.70                4                 NA
+## 7       1.20       4.44   -87.30                4                 NA
+## 8       0.43       4.15   -88.50                4                 NA
+## 9       0.93       6.72   -93.70                4                 NA
+## 10    114.00      22.40   -13.10               18                 NA
+## 11      0.92       5.94   -92.70                3                 NA
+## 12      1.01       4.96   -87.80                5                 NA
+## 13      0.54       2.45   -88.60                3                 NA
+## 14      0.45       5.02   -87.90                5                 NA
+## 15      5.34      -3.09   -80.30                4                 NA
+## 16      1.65       3.47   -87.00                2                 NA
+## 17    129.00      27.80     1.84               21                 NA
+## 18      0.92       5.31   -93.10                3                 NA
+## 19    123.00      26.70    -2.68               19                 NA
+## 20      1.40       3.20   -88.70                3                 NA
+##    kurtosis_picth_belt kurtosis_yaw_belt skewness_roll_belt
+## 1                   NA                NA                 NA
+## 2                   NA                NA                 NA
+## 3                   NA                NA                 NA
+## 4                   NA                NA                 NA
+## 5                   NA                NA                 NA
+## 6                   NA                NA                 NA
+## 7                   NA                NA                 NA
+## 8                   NA                NA                 NA
+## 9                   NA                NA                 NA
+## 10                  NA                NA                 NA
+## 11                  NA                NA                 NA
+## 12                  NA                NA                 NA
+## 13                  NA                NA                 NA
+## 14                  NA                NA                 NA
+## 15                  NA                NA                 NA
+## 16                  NA                NA                 NA
+## 17                  NA                NA                 NA
+## 18                  NA                NA                 NA
+## 19                  NA                NA                 NA
+## 20                  NA                NA                 NA
+##    skewness_roll_belt.1 skewness_yaw_belt max_roll_belt max_picth_belt
+## 1                    NA                NA            NA             NA
+## 2                    NA                NA            NA             NA
+## 3                    NA                NA            NA             NA
+## 4                    NA                NA            NA             NA
+## 5                    NA                NA            NA             NA
+## 6                    NA                NA            NA             NA
+## 7                    NA                NA            NA             NA
+## 8                    NA                NA            NA             NA
+## 9                    NA                NA            NA             NA
+## 10                   NA                NA            NA             NA
+## 11                   NA                NA            NA             NA
+## 12                   NA                NA            NA             NA
+## 13                   NA                NA            NA             NA
+## 14                   NA                NA            NA             NA
+## 15                   NA                NA            NA             NA
+## 16                   NA                NA            NA             NA
+## 17                   NA                NA            NA             NA
+## 18                   NA                NA            NA             NA
+## 19                   NA                NA            NA             NA
+## 20                   NA                NA            NA             NA
+##    max_yaw_belt min_roll_belt min_pitch_belt min_yaw_belt
+## 1            NA            NA             NA           NA
+## 2            NA            NA             NA           NA
+## 3            NA            NA             NA           NA
+## 4            NA            NA             NA           NA
+## 5            NA            NA             NA           NA
+## 6            NA            NA             NA           NA
+## 7            NA            NA             NA           NA
+## 8            NA            NA             NA           NA
+## 9            NA            NA             NA           NA
+## 10           NA            NA             NA           NA
+## 11           NA            NA             NA           NA
+## 12           NA            NA             NA           NA
+## 13           NA            NA             NA           NA
+## 14           NA            NA             NA           NA
+## 15           NA            NA             NA           NA
+## 16           NA            NA             NA           NA
+## 17           NA            NA             NA           NA
+## 18           NA            NA             NA           NA
+## 19           NA            NA             NA           NA
+## 20           NA            NA             NA           NA
+##    amplitude_roll_belt amplitude_pitch_belt amplitude_yaw_belt
+## 1                   NA                   NA                 NA
+## 2                   NA                   NA                 NA
+## 3                   NA                   NA                 NA
+## 4                   NA                   NA                 NA
+## 5                   NA                   NA                 NA
+## 6                   NA                   NA                 NA
+## 7                   NA                   NA                 NA
+## 8                   NA                   NA                 NA
+## 9                   NA                   NA                 NA
+## 10                  NA                   NA                 NA
+## 11                  NA                   NA                 NA
+## 12                  NA                   NA                 NA
+## 13                  NA                   NA                 NA
+## 14                  NA                   NA                 NA
+## 15                  NA                   NA                 NA
+## 16                  NA                   NA                 NA
+## 17                  NA                   NA                 NA
+## 18                  NA                   NA                 NA
+## 19                  NA                   NA                 NA
+## 20                  NA                   NA                 NA
+##    var_total_accel_belt avg_roll_belt stddev_roll_belt var_roll_belt
+## 1                    NA            NA               NA            NA
+## 2                    NA            NA               NA            NA
+## 3                    NA            NA               NA            NA
+## 4                    NA            NA               NA            NA
+## 5                    NA            NA               NA            NA
+## 6                    NA            NA               NA            NA
+## 7                    NA            NA               NA            NA
+## 8                    NA            NA               NA            NA
+## 9                    NA            NA               NA            NA
+## 10                   NA            NA               NA            NA
+## 11                   NA            NA               NA            NA
+## 12                   NA            NA               NA            NA
+## 13                   NA            NA               NA            NA
+## 14                   NA            NA               NA            NA
+## 15                   NA            NA               NA            NA
+## 16                   NA            NA               NA            NA
+## 17                   NA            NA               NA            NA
+## 18                   NA            NA               NA            NA
+## 19                   NA            NA               NA            NA
+## 20                   NA            NA               NA            NA
+##    avg_pitch_belt stddev_pitch_belt var_pitch_belt avg_yaw_belt
+## 1              NA                NA             NA           NA
+## 2              NA                NA             NA           NA
+## 3              NA                NA             NA           NA
+## 4              NA                NA             NA           NA
+## 5              NA                NA             NA           NA
+## 6              NA                NA             NA           NA
+## 7              NA                NA             NA           NA
+## 8              NA                NA             NA           NA
+## 9              NA                NA             NA           NA
+## 10             NA                NA             NA           NA
+## 11             NA                NA             NA           NA
+## 12             NA                NA             NA           NA
+## 13             NA                NA             NA           NA
+## 14             NA                NA             NA           NA
+## 15             NA                NA             NA           NA
+## 16             NA                NA             NA           NA
+## 17             NA                NA             NA           NA
+## 18             NA                NA             NA           NA
+## 19             NA                NA             NA           NA
+## 20             NA                NA             NA           NA
+##    stddev_yaw_belt var_yaw_belt gyros_belt_x gyros_belt_y gyros_belt_z
+## 1               NA           NA        -0.50        -0.02        -0.46
+## 2               NA           NA        -0.06        -0.02        -0.07
+## 3               NA           NA         0.05         0.02         0.03
+## 4               NA           NA         0.11         0.11        -0.16
+## 5               NA           NA         0.03         0.02         0.00
+## 6               NA           NA         0.10         0.05        -0.13
+## 7               NA           NA        -0.06         0.00         0.00
+## 8               NA           NA        -0.18        -0.02        -0.03
+## 9               NA           NA         0.10         0.00        -0.02
+## 10              NA           NA         0.14         0.11        -0.16
+## 11              NA           NA         0.05         0.00         0.00
+## 12              NA           NA        -0.10         0.00         0.02
+## 13              NA           NA        -0.06         0.00        -0.13
+## 14              NA           NA        -0.05         0.00         0.00
+## 15              NA           NA         0.24         0.00         0.05
+## 16              NA           NA         0.02         0.02         0.00
+## 17              NA           NA        -0.50         0.00        -0.48
+## 18              NA           NA         0.02         0.00        -0.05
+## 19              NA           NA        -0.31        -0.05        -0.44
+## 20              NA           NA         0.06        -0.02         0.02
+##    accel_belt_x accel_belt_y accel_belt_z magnet_belt_x magnet_belt_y
+## 1           -38           69         -179           -13           581
+## 2           -13           11           39            43           636
+## 3             1           -1           49            29           631
+## 4            46           45         -156           169           608
+## 5            -8            4           27            33           566
+## 6           -11          -16           38            31           638
+## 7           -14            2           35            50           622
+## 8           -10           -2           42            39           635
+## 9           -15            1           32            -6           600
+## 10          -25           63         -158            10           601
+## 11          -18            4           27             6           599
+## 12          -22            8           40            51           632
+## 13           -8            5           24            34           571
+## 14          -14            2           49            55           635
+## 15            8           19           28            91           584
+## 16          -12            5           20            45           566
+## 17          -47           69         -187             4           566
+## 18          -13            3           24             0           607
+## 19          -48           72         -169            -5           584
+## 20           -9            4           23            37           567
+##    magnet_belt_z roll_arm pitch_arm yaw_arm total_accel_arm var_accel_arm
+## 1           -382    40.70    -27.80   178.0              10            NA
+## 2           -309     0.00      0.00     0.0              38            NA
+## 3           -312     0.00      0.00     0.0              44            NA
+## 4           -304  -109.00     55.00  -142.0              25            NA
+## 5           -418    76.10      2.76   102.0              29            NA
+## 6           -291     0.00      0.00     0.0              14            NA
+## 7           -315     0.00      0.00     0.0              15            NA
+## 8           -305     0.00      0.00     0.0              22            NA
+## 9           -302  -137.00     11.20  -167.0              34            NA
+## 10          -330   -82.40    -63.80   -75.3              32            NA
+## 11          -312    70.00     15.10   113.0              33            NA
+## 12          -308     0.00      0.00     0.0              30            NA
+## 13          -426   110.00    -31.70   -13.6              23            NA
+## 14          -305     0.00      0.00     0.0              37            NA
+## 15          -398     0.00      0.00     0.0              23            NA
+## 16          -425    88.10      5.58   123.0              33            NA
+## 17          -400    -1.47     -3.45   -55.1               3            NA
+## 18          -305   152.00    -26.40   -85.0              42            NA
+## 19          -366    30.70    -27.00  -151.0              11            NA
+## 20          -425    90.60     11.50   117.0              30            NA
+##    avg_roll_arm stddev_roll_arm var_roll_arm avg_pitch_arm
+## 1            NA              NA           NA            NA
+## 2            NA              NA           NA            NA
+## 3            NA              NA           NA            NA
+## 4            NA              NA           NA            NA
+## 5            NA              NA           NA            NA
+## 6            NA              NA           NA            NA
+## 7            NA              NA           NA            NA
+## 8            NA              NA           NA            NA
+## 9            NA              NA           NA            NA
+## 10           NA              NA           NA            NA
+## 11           NA              NA           NA            NA
+## 12           NA              NA           NA            NA
+## 13           NA              NA           NA            NA
+## 14           NA              NA           NA            NA
+## 15           NA              NA           NA            NA
+## 16           NA              NA           NA            NA
+## 17           NA              NA           NA            NA
+## 18           NA              NA           NA            NA
+## 19           NA              NA           NA            NA
+## 20           NA              NA           NA            NA
+##    stddev_pitch_arm var_pitch_arm avg_yaw_arm stddev_yaw_arm var_yaw_arm
+## 1                NA            NA          NA             NA          NA
+## 2                NA            NA          NA             NA          NA
+## 3                NA            NA          NA             NA          NA
+## 4                NA            NA          NA             NA          NA
+## 5                NA            NA          NA             NA          NA
+## 6                NA            NA          NA             NA          NA
+## 7                NA            NA          NA             NA          NA
+## 8                NA            NA          NA             NA          NA
+## 9                NA            NA          NA             NA          NA
+## 10               NA            NA          NA             NA          NA
+## 11               NA            NA          NA             NA          NA
+## 12               NA            NA          NA             NA          NA
+## 13               NA            NA          NA             NA          NA
+## 14               NA            NA          NA             NA          NA
+## 15               NA            NA          NA             NA          NA
+## 16               NA            NA          NA             NA          NA
+## 17               NA            NA          NA             NA          NA
+## 18               NA            NA          NA             NA          NA
+## 19               NA            NA          NA             NA          NA
+## 20               NA            NA          NA             NA          NA
+##    gyros_arm_x gyros_arm_y gyros_arm_z accel_arm_x accel_arm_y accel_arm_z
+## 1        -1.65        0.48       -0.18          16          38          93
+## 2        -1.17        0.85       -0.43        -290         215         -90
+## 3         2.10       -1.36        1.13        -341         245         -87
+## 4         0.22       -0.51        0.92        -238         -57           6
+## 5        -1.96        0.79       -0.54        -197         200         -30
+## 6         0.02        0.05       -0.07         -26         130         -19
+## 7         2.36       -1.01        0.89          99          79         -67
+## 8        -3.71        1.85       -0.69         -98         175         -78
+## 9         0.03       -0.02       -0.02        -287         111        -122
+## 10        0.26       -0.50        0.79        -301         -42         -80
+## 11       -0.08        0.02        0.00        -277         113        -112
+## 12        2.57       -1.06        0.79        -192         204         -75
+## 13       -3.44        1.08       -0.15         106          97        -168
+## 14       -0.02       -0.02       -0.10        -277         157        -183
+## 15        3.66       -2.09        0.49          41          85        -204
+## 16        0.02       -0.06        0.10        -236         163        -148
+## 17       -0.19       -0.24        0.13           2          -9          27
+## 18        1.00       -0.37       -0.03          35         -65        -404
+## 19        1.99       -1.20       -0.44          -7          57          89
+## 20       -0.47        0.13       -0.18        -223         166        -105
+##    magnet_arm_x magnet_arm_y magnet_arm_z kurtosis_roll_arm
+## 1          -326          385          481                NA
+## 2          -325          447          434                NA
+## 3          -264          474          413                NA
+## 4          -173          257          633                NA
+## 5          -170          275          617                NA
+## 6           396          176          516                NA
+## 7           702           15          217                NA
+## 8           535          215          385                NA
+## 9          -367          335          520                NA
+## 10         -420          294          493                NA
+## 11         -320          350          514                NA
+## 12          194          280          555                NA
+## 13          697         -184         -175                NA
+## 14         -404          416          409                NA
+## 15          750          -24          -58                NA
+## 16         -398          288          525                NA
+## 17         -394          321          502                NA
+## 18          202         -307         -499                NA
+## 19         -266          454          441                NA
+## 20         -428          321          472                NA
+##    kurtosis_picth_arm kurtosis_yaw_arm skewness_roll_arm
+## 1                  NA               NA                NA
+## 2                  NA               NA                NA
+## 3                  NA               NA                NA
+## 4                  NA               NA                NA
+## 5                  NA               NA                NA
+## 6                  NA               NA                NA
+## 7                  NA               NA                NA
+## 8                  NA               NA                NA
+## 9                  NA               NA                NA
+## 10                 NA               NA                NA
+## 11                 NA               NA                NA
+## 12                 NA               NA                NA
+## 13                 NA               NA                NA
+## 14                 NA               NA                NA
+## 15                 NA               NA                NA
+## 16                 NA               NA                NA
+## 17                 NA               NA                NA
+## 18                 NA               NA                NA
+## 19                 NA               NA                NA
+## 20                 NA               NA                NA
+##    skewness_pitch_arm skewness_yaw_arm max_roll_arm max_picth_arm
+## 1                  NA               NA           NA            NA
+## 2                  NA               NA           NA            NA
+## 3                  NA               NA           NA            NA
+## 4                  NA               NA           NA            NA
+## 5                  NA               NA           NA            NA
+## 6                  NA               NA           NA            NA
+## 7                  NA               NA           NA            NA
+## 8                  NA               NA           NA            NA
+## 9                  NA               NA           NA            NA
+## 10                 NA               NA           NA            NA
+## 11                 NA               NA           NA            NA
+## 12                 NA               NA           NA            NA
+## 13                 NA               NA           NA            NA
+## 14                 NA               NA           NA            NA
+## 15                 NA               NA           NA            NA
+## 16                 NA               NA           NA            NA
+## 17                 NA               NA           NA            NA
+## 18                 NA               NA           NA            NA
+## 19                 NA               NA           NA            NA
+## 20                 NA               NA           NA            NA
+##    max_yaw_arm min_roll_arm min_pitch_arm min_yaw_arm amplitude_roll_arm
+## 1           NA           NA            NA          NA                 NA
+## 2           NA           NA            NA          NA                 NA
+## 3           NA           NA            NA          NA                 NA
+## 4           NA           NA            NA          NA                 NA
+## 5           NA           NA            NA          NA                 NA
+## 6           NA           NA            NA          NA                 NA
+## 7           NA           NA            NA          NA                 NA
+## 8           NA           NA            NA          NA                 NA
+## 9           NA           NA            NA          NA                 NA
+## 10          NA           NA            NA          NA                 NA
+## 11          NA           NA            NA          NA                 NA
+## 12          NA           NA            NA          NA                 NA
+## 13          NA           NA            NA          NA                 NA
+## 14          NA           NA            NA          NA                 NA
+## 15          NA           NA            NA          NA                 NA
+## 16          NA           NA            NA          NA                 NA
+## 17          NA           NA            NA          NA                 NA
+## 18          NA           NA            NA          NA                 NA
+## 19          NA           NA            NA          NA                 NA
+## 20          NA           NA            NA          NA                 NA
+##    amplitude_pitch_arm amplitude_yaw_arm roll_dumbbell pitch_dumbbell
+## 1                   NA                NA    -17.737480       24.96085
+## 2                   NA                NA     54.477605      -53.69758
+## 3                   NA                NA     57.070308      -51.37303
+## 4                   NA                NA     43.109268      -30.04885
+## 5                   NA                NA   -101.383964      -53.43952
+## 6                   NA                NA     62.187498      -50.55595
+## 7                   NA                NA     56.046184      -53.96761
+## 8                   NA                NA     59.128080      -51.30242
+## 9                   NA                NA    122.524075        0.00000
+## 10                  NA                NA   -111.117700      -31.90635
+## 11                  NA                NA    123.984144      -32.07139
+## 12                  NA                NA     45.507300      -53.70901
+## 13                  NA                NA     12.479968       34.27571
+## 14                  NA                NA     56.370775      -49.97065
+## 15                  NA                NA     46.327501      -54.97284
+## 16                  NA                NA     57.795891       33.72223
+## 17                  NA                NA    -28.497111       13.61379
+## 18                  NA                NA    107.472223      -49.53990
+## 19                  NA                NA     -7.463022       23.65339
+## 20                  NA                NA     36.916678       96.86773
+##    yaw_dumbbell kurtosis_roll_dumbbell kurtosis_picth_dumbbell
+## 1    126.235964                     NA                      NA
+## 2    -75.514799                     NA                      NA
+## 3    -75.202873                     NA                      NA
+## 4   -103.320032                     NA                      NA
+## 5    -14.195423                     NA                      NA
+## 6    -71.120631                     NA                      NA
+## 7    -73.870552                     NA                      NA
+## 8    -73.368487                     NA                      NA
+## 9     34.555558                     NA                      NA
+## 10    31.906354                     NA                      NA
+## 11     7.889285                     NA                      NA
+## 12   -83.050116                     NA                      NA
+## 13   120.424746                     NA                      NA
+## 14   -77.029188                     NA                      NA
+## 15   -81.274990                     NA                      NA
+## 16    87.799283                     NA                      NA
+## 17   125.331471                     NA                      NA
+## 18    -2.377137                     NA                      NA
+## 19   132.233740                     NA                      NA
+## 20    45.178263                     NA                      NA
+##    kurtosis_yaw_dumbbell skewness_roll_dumbbell skewness_pitch_dumbbell
+## 1                     NA                     NA                      NA
+## 2                     NA                     NA                      NA
+## 3                     NA                     NA                      NA
+## 4                     NA                     NA                      NA
+## 5                     NA                     NA                      NA
+## 6                     NA                     NA                      NA
+## 7                     NA                     NA                      NA
+## 8                     NA                     NA                      NA
+## 9                     NA                     NA                      NA
+## 10                    NA                     NA                      NA
+## 11                    NA                     NA                      NA
+## 12                    NA                     NA                      NA
+## 13                    NA                     NA                      NA
+## 14                    NA                     NA                      NA
+## 15                    NA                     NA                      NA
+## 16                    NA                     NA                      NA
+## 17                    NA                     NA                      NA
+## 18                    NA                     NA                      NA
+## 19                    NA                     NA                      NA
+## 20                    NA                     NA                      NA
+##    skewness_yaw_dumbbell max_roll_dumbbell max_picth_dumbbell
+## 1                     NA                NA                 NA
+## 2                     NA                NA                 NA
+## 3                     NA                NA                 NA
+## 4                     NA                NA                 NA
+## 5                     NA                NA                 NA
+## 6                     NA                NA                 NA
+## 7                     NA                NA                 NA
+## 8                     NA                NA                 NA
+## 9                     NA                NA                 NA
+## 10                    NA                NA                 NA
+## 11                    NA                NA                 NA
+## 12                    NA                NA                 NA
+## 13                    NA                NA                 NA
+## 14                    NA                NA                 NA
+## 15                    NA                NA                 NA
+## 16                    NA                NA                 NA
+## 17                    NA                NA                 NA
+## 18                    NA                NA                 NA
+## 19                    NA                NA                 NA
+## 20                    NA                NA                 NA
+##    max_yaw_dumbbell min_roll_dumbbell min_pitch_dumbbell min_yaw_dumbbell
+## 1                NA                NA                 NA               NA
+## 2                NA                NA                 NA               NA
+## 3                NA                NA                 NA               NA
+## 4                NA                NA                 NA               NA
+## 5                NA                NA                 NA               NA
+## 6                NA                NA                 NA               NA
+## 7                NA                NA                 NA               NA
+## 8                NA                NA                 NA               NA
+## 9                NA                NA                 NA               NA
+## 10               NA                NA                 NA               NA
+## 11               NA                NA                 NA               NA
+## 12               NA                NA                 NA               NA
+## 13               NA                NA                 NA               NA
+## 14               NA                NA                 NA               NA
+## 15               NA                NA                 NA               NA
+## 16               NA                NA                 NA               NA
+## 17               NA                NA                 NA               NA
+## 18               NA                NA                 NA               NA
+## 19               NA                NA                 NA               NA
+## 20               NA                NA                 NA               NA
+##    amplitude_roll_dumbbell amplitude_pitch_dumbbell amplitude_yaw_dumbbell
+## 1                       NA                       NA                     NA
+## 2                       NA                       NA                     NA
+## 3                       NA                       NA                     NA
+## 4                       NA                       NA                     NA
+## 5                       NA                       NA                     NA
+## 6                       NA                       NA                     NA
+## 7                       NA                       NA                     NA
+## 8                       NA                       NA                     NA
+## 9                       NA                       NA                     NA
+## 10                      NA                       NA                     NA
+## 11                      NA                       NA                     NA
+## 12                      NA                       NA                     NA
+## 13                      NA                       NA                     NA
+## 14                      NA                       NA                     NA
+## 15                      NA                       NA                     NA
+## 16                      NA                       NA                     NA
+## 17                      NA                       NA                     NA
+## 18                      NA                       NA                     NA
+## 19                      NA                       NA                     NA
+## 20                      NA                       NA                     NA
+##    total_accel_dumbbell var_accel_dumbbell avg_roll_dumbbell
+## 1                     9                 NA                NA
+## 2                    31                 NA                NA
+## 3                    29                 NA                NA
+## 4                    18                 NA                NA
+## 5                     4                 NA                NA
+## 6                    29                 NA                NA
+## 7                    29                 NA                NA
+## 8                    29                 NA                NA
+## 9                     3                 NA                NA
+## 10                    2                 NA                NA
+## 11                    1                 NA                NA
+## 12                   30                 NA                NA
+## 13                    8                 NA                NA
+## 14                   30                 NA                NA
+## 15                   31                 NA                NA
+## 16                   13                 NA                NA
+## 17                   11                 NA                NA
+## 18                    4                 NA                NA
+## 19                   10                 NA                NA
+## 20                   23                 NA                NA
+##    stddev_roll_dumbbell var_roll_dumbbell avg_pitch_dumbbell
+## 1                    NA                NA                 NA
+## 2                    NA                NA                 NA
+## 3                    NA                NA                 NA
+## 4                    NA                NA                 NA
+## 5                    NA                NA                 NA
+## 6                    NA                NA                 NA
+## 7                    NA                NA                 NA
+## 8                    NA                NA                 NA
+## 9                    NA                NA                 NA
+## 10                   NA                NA                 NA
+## 11                   NA                NA                 NA
+## 12                   NA                NA                 NA
+## 13                   NA                NA                 NA
+## 14                   NA                NA                 NA
+## 15                   NA                NA                 NA
+## 16                   NA                NA                 NA
+## 17                   NA                NA                 NA
+## 18                   NA                NA                 NA
+## 19                   NA                NA                 NA
+## 20                   NA                NA                 NA
+##    stddev_pitch_dumbbell var_pitch_dumbbell avg_yaw_dumbbell
+## 1                     NA                 NA               NA
+## 2                     NA                 NA               NA
+## 3                     NA                 NA               NA
+## 4                     NA                 NA               NA
+## 5                     NA                 NA               NA
+## 6                     NA                 NA               NA
+## 7                     NA                 NA               NA
+## 8                     NA                 NA               NA
+## 9                     NA                 NA               NA
+## 10                    NA                 NA               NA
+## 11                    NA                 NA               NA
+## 12                    NA                 NA               NA
+## 13                    NA                 NA               NA
+## 14                    NA                 NA               NA
+## 15                    NA                 NA               NA
+## 16                    NA                 NA               NA
+## 17                    NA                 NA               NA
+## 18                    NA                 NA               NA
+## 19                    NA                 NA               NA
+## 20                    NA                 NA               NA
+##    stddev_yaw_dumbbell var_yaw_dumbbell gyros_dumbbell_x gyros_dumbbell_y
+## 1                   NA               NA             0.64             0.06
+## 2                   NA               NA             0.34             0.05
+## 3                   NA               NA             0.39             0.14
+## 4                   NA               NA             0.10            -0.02
+## 5                   NA               NA             0.29            -0.47
+## 6                   NA               NA            -0.59             0.80
+## 7                   NA               NA             0.34             0.16
+## 8                   NA               NA             0.37             0.14
+## 9                   NA               NA             0.03            -0.21
+## 10                  NA               NA             0.42             0.51
+## 11                  NA               NA             0.18            -0.47
+## 12                  NA               NA             0.39            -0.10
+## 13                  NA               NA             1.06            -1.11
+## 14                  NA               NA             0.35             0.11
+## 15                  NA               NA             0.75            -0.21
+## 16                  NA               NA            -1.03             0.92
+## 17                  NA               NA             0.50            -0.11
+## 18                  NA               NA            -0.39             1.91
+## 19                  NA               NA             0.45            -0.10
+## 20                  NA               NA             0.79            -0.79
+##    gyros_dumbbell_z accel_dumbbell_x accel_dumbbell_y accel_dumbbell_z
+## 1             -0.61               21              -15               81
+## 2             -0.71             -153              155             -205
+## 3             -0.34             -141              155             -196
+## 4              0.05              -51               72             -148
+## 5             -0.46              -18              -30               -5
+## 6              1.10             -138              166             -186
+## 7             -0.23             -145              150             -190
+## 8             -0.39             -140              159             -191
+## 9             -0.21                0               25                9
+## 10            -0.03               -7              -20                7
+## 11            -0.23               -4               12                1
+## 12            -0.56             -149              128             -215
+## 13            -1.00               27               10               75
+## 14            -0.38             -139              155             -202
+## 15            -1.18             -159              136             -221
+## 16             0.13               43               71              100
+## 17            -0.33               14              -29               98
+## 18             0.52              -20               37               -1
+## 19            -0.23               22               -7               91
+## 20            -0.23              185               81               98
+##    magnet_dumbbell_x magnet_dumbbell_y magnet_dumbbell_z roll_forearm
+## 1                523              -528               -56        141.0
+## 2               -502               388               -36        109.0
+## 3               -506               349                41        131.0
+## 4               -576               238                53          0.0
+## 5               -424               252               312       -176.0
+## 6               -543               262                96        150.0
+## 7               -484               354                97        155.0
+## 8               -515               350                53       -161.0
+## 9               -519               348               -32         15.5
+## 10              -531               321              -164         13.2
+## 11              -556               280               -23        137.0
+## 12              -539               293                67        138.0
+## 13              -328               271               363        176.0
+## 14              -523               337                46         53.1
+## 15              -511               323                85        152.0
+## 16              -284               311               368       -176.0
+## 17               484              -558               -19         79.4
+## 18              -527               329               -77       -173.0
+## 19               505              -537               -86       -164.0
+## 20               272               403               340        173.0
+##    pitch_forearm yaw_forearm kurtosis_roll_forearm kurtosis_picth_forearm
+## 1          49.30       156.0                    NA                     NA
+## 2         -17.60       106.0                    NA                     NA
+## 3         -32.60        93.0                    NA                     NA
+## 4           0.00         0.0                    NA                     NA
+## 5          -2.16       -47.9                    NA                     NA
+## 6           1.46        89.7                    NA                     NA
+## 7          34.50       152.0                    NA                     NA
+## 8          43.60       -89.5                    NA                     NA
+## 9         -63.50      -139.0                    NA                     NA
+## 10         19.40      -105.0                    NA                     NA
+## 11         -9.41       104.0                    NA                     NA
+## 12        -19.90        70.5                    NA                     NA
+## 13         16.70       -38.5                    NA                     NA
+## 14        -46.20       159.0                    NA                     NA
+## 15         26.50      -168.0                    NA                     NA
+## 16         16.20       -42.2                    NA                     NA
+## 17         -2.60       109.0                    NA                     NA
+## 18         49.80      -133.0                    NA                     NA
+## 19         59.30      -149.0                    NA                     NA
+## 20         19.20       -83.2                    NA                     NA
+##    kurtosis_yaw_forearm skewness_roll_forearm skewness_pitch_forearm
+## 1                    NA                    NA                     NA
+## 2                    NA                    NA                     NA
+## 3                    NA                    NA                     NA
+## 4                    NA                    NA                     NA
+## 5                    NA                    NA                     NA
+## 6                    NA                    NA                     NA
+## 7                    NA                    NA                     NA
+## 8                    NA                    NA                     NA
+## 9                    NA                    NA                     NA
+## 10                   NA                    NA                     NA
+## 11                   NA                    NA                     NA
+## 12                   NA                    NA                     NA
+## 13                   NA                    NA                     NA
+## 14                   NA                    NA                     NA
+## 15                   NA                    NA                     NA
+## 16                   NA                    NA                     NA
+## 17                   NA                    NA                     NA
+## 18                   NA                    NA                     NA
+## 19                   NA                    NA                     NA
+## 20                   NA                    NA                     NA
+##    skewness_yaw_forearm max_roll_forearm max_picth_forearm max_yaw_forearm
+## 1                    NA               NA                NA              NA
+## 2                    NA               NA                NA              NA
+## 3                    NA               NA                NA              NA
+## 4                    NA               NA                NA              NA
+## 5                    NA               NA                NA              NA
+## 6                    NA               NA                NA              NA
+## 7                    NA               NA                NA              NA
+## 8                    NA               NA                NA              NA
+## 9                    NA               NA                NA              NA
+## 10                   NA               NA                NA              NA
+## 11                   NA               NA                NA              NA
+## 12                   NA               NA                NA              NA
+## 13                   NA               NA                NA              NA
+## 14                   NA               NA                NA              NA
+## 15                   NA               NA                NA              NA
+## 16                   NA               NA                NA              NA
+## 17                   NA               NA                NA              NA
+## 18                   NA               NA                NA              NA
+## 19                   NA               NA                NA              NA
+## 20                   NA               NA                NA              NA
+##    min_roll_forearm min_pitch_forearm min_yaw_forearm
+## 1                NA                NA              NA
+## 2                NA                NA              NA
+## 3                NA                NA              NA
+## 4                NA                NA              NA
+## 5                NA                NA              NA
+## 6                NA                NA              NA
+## 7                NA                NA              NA
+## 8                NA                NA              NA
+## 9                NA                NA              NA
+## 10               NA                NA              NA
+## 11               NA                NA              NA
+## 12               NA                NA              NA
+## 13               NA                NA              NA
+## 14               NA                NA              NA
+## 15               NA                NA              NA
+## 16               NA                NA              NA
+## 17               NA                NA              NA
+## 18               NA                NA              NA
+## 19               NA                NA              NA
+## 20               NA                NA              NA
+##    amplitude_roll_forearm amplitude_pitch_forearm amplitude_yaw_forearm
+## 1                      NA                      NA                    NA
+## 2                      NA                      NA                    NA
+## 3                      NA                      NA                    NA
+## 4                      NA                      NA                    NA
+## 5                      NA                      NA                    NA
+## 6                      NA                      NA                    NA
+## 7                      NA                      NA                    NA
+## 8                      NA                      NA                    NA
+## 9                      NA                      NA                    NA
+## 10                     NA                      NA                    NA
+## 11                     NA                      NA                    NA
+## 12                     NA                      NA                    NA
+## 13                     NA                      NA                    NA
+## 14                     NA                      NA                    NA
+## 15                     NA                      NA                    NA
+## 16                     NA                      NA                    NA
+## 17                     NA                      NA                    NA
+## 18                     NA                      NA                    NA
+## 19                     NA                      NA                    NA
+## 20                     NA                      NA                    NA
+##    total_accel_forearm var_accel_forearm avg_roll_forearm
+## 1                   33                NA               NA
+## 2                   39                NA               NA
+## 3                   34                NA               NA
+## 4                   43                NA               NA
+## 5                   24                NA               NA
+## 6                   43                NA               NA
+## 7                   32                NA               NA
+## 8                   47                NA               NA
+## 9                   36                NA               NA
+## 10                  24                NA               NA
+## 11                  46                NA               NA
+## 12                  36                NA               NA
+## 13                  23                NA               NA
+## 14                  33                NA               NA
+## 15                  24                NA               NA
+## 16                  25                NA               NA
+## 17                  30                NA               NA
+## 18                  25                NA               NA
+## 19                  23                NA               NA
+## 20                  21                NA               NA
+##    stddev_roll_forearm var_roll_forearm avg_pitch_forearm
+## 1                   NA               NA                NA
+## 2                   NA               NA                NA
+## 3                   NA               NA                NA
+## 4                   NA               NA                NA
+## 5                   NA               NA                NA
+## 6                   NA               NA                NA
+## 7                   NA               NA                NA
+## 8                   NA               NA                NA
+## 9                   NA               NA                NA
+## 10                  NA               NA                NA
+## 11                  NA               NA                NA
+## 12                  NA               NA                NA
+## 13                  NA               NA                NA
+## 14                  NA               NA                NA
+## 15                  NA               NA                NA
+## 16                  NA               NA                NA
+## 17                  NA               NA                NA
+## 18                  NA               NA                NA
+## 19                  NA               NA                NA
+## 20                  NA               NA                NA
+##    stddev_pitch_forearm var_pitch_forearm avg_yaw_forearm
+## 1                    NA                NA              NA
+## 2                    NA                NA              NA
+## 3                    NA                NA              NA
+## 4                    NA                NA              NA
+## 5                    NA                NA              NA
+## 6                    NA                NA              NA
+## 7                    NA                NA              NA
+## 8                    NA                NA              NA
+## 9                    NA                NA              NA
+## 10                   NA                NA              NA
+## 11                   NA                NA              NA
+## 12                   NA                NA              NA
+## 13                   NA                NA              NA
+## 14                   NA                NA              NA
+## 15                   NA                NA              NA
+## 16                   NA                NA              NA
+## 17                   NA                NA              NA
+## 18                   NA                NA              NA
+## 19                   NA                NA              NA
+## 20                   NA                NA              NA
+##    stddev_yaw_forearm var_yaw_forearm gyros_forearm_x gyros_forearm_y
+## 1                  NA              NA            0.74           -3.34
+## 2                  NA              NA            1.12           -2.78
+## 3                  NA              NA            0.18           -0.79
+## 4                  NA              NA            1.38            0.69
+## 5                  NA              NA           -0.75            3.10
+## 6                  NA              NA           -0.88            4.26
+## 7                  NA              NA           -0.53            1.80
+## 8                  NA              NA            0.63           -0.74
+## 9                  NA              NA            0.03            0.02
+## 10                 NA              NA            0.02            0.13
+## 11                 NA              NA            0.05            0.05
+## 12                 NA              NA           -0.02            0.83
+## 13                 NA              NA            0.00           -4.69
+## 14                 NA              NA            0.02            0.00
+## 15                 NA              NA            0.64           -5.97
+## 16                 NA              NA           -0.31           -3.45
+## 17                 NA              NA            0.10           -0.06
+## 18                 NA              NA           -0.75            4.14
+## 19                 NA              NA           -1.06            2.79
+## 20                 NA              NA           -1.01            3.18
+##    gyros_forearm_z accel_forearm_x accel_forearm_y accel_forearm_z
+## 1            -0.59            -110             267            -149
+## 2            -0.18             212             297            -118
+## 3             0.28             154             271            -129
+## 4             1.80             -92             406             -39
+## 5             0.80             131             -93             172
+## 6             1.35             230             322            -144
+## 7             0.75            -192             170            -175
+## 8             0.49            -151            -331            -282
+## 9            -0.02             195             204            -217
+## 10           -0.07            -212              98              -7
+## 11            0.11              -3             405            -203
+## 12            0.38             182             263            -148
+## 13           -1.26             149              46             167
+## 14            0.03             232             106            -198
+## 15           -1.05             -18              43            -226
+## 16           -0.66             161             -61             171
+## 17            0.18             144             201            -154
+## 18            0.95            -129             -29            -202
+## 19            0.67            -148              21            -172
+## 20            1.26              41            -100             179
+##    magnet_forearm_x magnet_forearm_y magnet_forearm_z classe
+## 1              -714              419              617      A
+## 2              -237              791              873      B
+## 3               -51              698              783      C
+## 4              -233              783              521      D
+## 5               375             -787               91      E
+## 6              -300              800              884      A
+## 7              -678              284              585      B
+## 8              -109             -619              -32      C
+## 9                 0              652              469      D
+## 10             -403              723              512      E
+## 11             -248              720              438      A
+## 12               32              648              702      B
+## 13              456             -677               29      C
+## 14              123              555              648      D
+## 15             -540             -155              389      E
+## 16              532             -775              114      A
+## 17             -146              756              708      B
+## 18             -500             -232              329      C
+## 19             -614              -46              471      D
+## 20               70             -703               74      E</code></pre>
+<p>Fit the test data into the model and predict the result. Extract the output:</p>
+<pre class="r"><code>rfdatatest&lt;-classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z
+xrftest&lt;-build.x(rfdatatest,data=datatest_clean)
+yrftest&lt;-build.y(rfdatatest,data=datatest_clean)
+rfresult&lt;-randomForest(x=xrf,y=yrf,xtest = xrftest,ytest=yrftest)
+rfresult</code></pre>
+<pre><code>## 
+## Call:
+##  randomForest(x = xrf, y = yrf, xtest = xrftest, ytest = yrftest) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 7
+## 
+##         OOB estimate of  error rate: 0.48%
+## Confusion matrix:
+##      A    B    C    D    E  class.error
+## A 4183    1    0    0    1 0.0004778973
+## B   14 2829    5    0    0 0.0066713483
+## C    0   16 2549    2    0 0.0070120764
+## D    0    0   23 2388    1 0.0099502488
+## E    0    0    1    6 2699 0.0025868441
+##                 Test set error rate: 95%
+## Confusion matrix:
+##   A B C D E class.error
+## A 0 2 0 0 2        1.00
+## B 2 0 1 1 0        1.00
+## C 0 4 0 0 0        1.00
+## D 3 1 0 0 0        1.00
+## E 2 1 0 0 1        0.75</code></pre>
+<pre class="r"><code>rfpred&lt;-rfresult[&quot;test&quot;][[1]][1]
+rfpred</code></pre>
+<pre><code>## $predicted
+##  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
+##  B  A  B  A  A  E  D  B  A  A  B  C  B  A  E  E  A  B  B  B 
+## Levels: A B C D E</code></pre>
+</div>
+<div id="d.-conclusion" class="section level1">
+<h1><strong>D. Conclusion</strong></h1>
+<p>The randomForest model to train and predict “classe” is built and able to predict &gt;99% accuracy. The model is also used to predict the 20 test case in the assignment. Path to repository:<a href="https://github.com/twming/practicalmachinelearning/" class="uri">https://github.com/twming/practicalmachinelearning/</a></p>
+</div>
+<div id="end-of-report" class="section level1">
+<h1><strong>–End of Report–</strong></h1>
+</div>
+<div id="appendix" class="section level1">
+<h1><strong>Appendix</strong></h1>
+<p>Other models: LDA give ~70% accurary</p>
+<pre class="r"><code>#train the model using lda
+set.seed(9747)
+mylda=train(classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z,data=datatrain_clean,method=&quot;lda&quot;)</code></pre>
+<pre><code>## Loading required package: MASS</code></pre>
+<pre class="r"><code>#verify the model using the cross-validation dataset
+mylda$finalModel</code></pre>
+<pre><code>## Call:
+## lda(x, grouping = y)
+## 
+## Prior probabilities of groups:
+##         A         B         C         D         E 
+## 0.2843457 0.1935046 0.1744123 0.1638810 0.1838565 
+## 
+## Group means:
+##   roll_belt pitch_belt   yaw_belt total_accel_belt gyros_belt_x
+## A  58.62115  0.6118949 -13.443959         10.60836 -0.007622461
+## B  65.23912  0.2274544 -14.052907         11.15941 -0.009051966
+## C  63.86778 -1.0700312  -8.276946         11.06934 -0.015040904
+## D  61.36402  1.7101493 -17.082666         11.29063 -0.014709784
+## E  73.34246  0.5724575  -6.286548         12.54472  0.012017738
+##   gyros_belt_y gyros_belt_z accel_belt_x accel_belt_y accel_belt_z
+## A   0.03939785   -0.1214958    -6.621983     28.67718    -61.43967
+## B   0.04224368   -0.1367697    -5.327247     32.19909    -73.86903
+## C   0.03868718   -0.1338333    -4.080639     30.68835    -69.52863
+## D   0.03629353   -0.1394735    -8.060116     30.73259    -70.12023
+## E   0.03914265   -0.1261678    -4.398744     28.64560    -90.01220
+##   magnet_belt_x magnet_belt_y magnet_belt_z   roll_arm  pitch_arm
+## A      57.23489      602.3849     -337.9391  0.3659498   2.981501
+## B      48.58041      599.2461     -337.0692 33.0123139  -6.337184
+## C      57.10713      600.2057     -337.0686 25.5760382  -1.957090
+## D      49.31551      593.9813     -341.2027 21.8823134 -10.671144
+## E      62.82446      568.2779     -378.8378 20.3501330 -12.695399
+##      yaw_arm total_accel_arm gyros_arm_x gyros_arm_y gyros_arm_z
+## A -11.765792        27.47312 0.011968937  -0.2119044   0.2550155
+## B   7.774691        26.65169 0.087377107  -0.3151615   0.2645435
+## C   4.522817        24.27931 0.087810674  -0.2572770   0.2626724
+## D   4.869391        23.38433 0.000128524  -0.2435572   0.2665672
+## E  -1.743625        24.44789 0.082413156  -0.2951220   0.2722838
+##   accel_arm_x accel_arm_y accel_arm_z magnet_arm_x magnet_arm_y
+## A  -130.95818    48.54074   -76.90203    -19.36033    236.43728
+## B   -43.21489    26.52037   -94.37360    230.24508    133.81039
+## C   -76.58395    42.11375   -55.08376    160.37865    188.31554
+## D    16.46269    24.55556   -46.99378    400.43947     96.61899
+## E   -19.57539    17.57391   -76.55987    326.19919     83.30525
+##   magnet_arm_z roll_dumbbell pitch_dumbbell yaw_dumbbell
+## A     406.8368      21.63673     -18.946006    1.1607582
+## B     198.6208      34.40055       3.019094   15.2902723
+## C     358.0861     -12.96898     -25.059325  -15.8594352
+## D     297.3628      50.32988      -2.383728    0.4282136
+## E     218.3806      26.87891      -6.675119    6.0933469
+##   total_accel_dumbbell gyros_dumbbell_x gyros_dumbbell_y gyros_dumbbell_z
+## A             14.87718        0.1210585      0.038124253      -0.07726882
+## B             14.26334        0.1627177      0.008648174      -0.13993680
+## C             12.99571        0.1939930      0.053139852      -0.15361511
+## D             11.43532        0.2028358      0.012296849      -0.13497098
+## E             14.33592        0.1292239      0.112682927      -0.13716186
+##   accel_dumbbell_x accel_dumbbell_y accel_dumbbell_z magnet_dumbbell_x
+## A      -51.4692951         53.44707        -57.42605         -383.3216
+## B       -0.7155899         67.52598        -14.81777         -249.2444
+## C      -40.9010518         31.58434        -53.51071         -371.7137
+## D      -22.8532338         53.65837        -34.25124         -316.1845
+## E      -18.0354767         55.70621        -24.38211         -297.0185
+##   magnet_dumbbell_y magnet_dumbbell_z roll_forearm pitch_forearm
+## A          215.3959          10.87852     26.46588     -6.893522
+## B          261.4400          47.65169     33.35114     14.707774
+## C          158.2493          62.89365     61.66891     12.322263
+## D          217.5444          57.65091     15.20658     27.984971
+## E          244.6397          72.45565     38.23592     17.054963
+##   yaw_forearm total_accel_forearm gyros_forearm_x gyros_forearm_y
+## A   26.253830            32.15006       0.1749964      0.10577300
+## B   13.687704            35.27879       0.1506601      0.04604284
+## C   40.619283            34.92481       0.2041917      0.05823529
+## D    3.723151            36.11609       0.1270398      0.03050580
+## E   10.315946            36.62417       0.1364967      0.06095713
+##   gyros_forearm_z accel_forearm_x accel_forearm_y accel_forearm_z
+## A       0.1636679        2.399044        169.5204       -61.86977
+## B       0.1688659      -76.727879        137.9266       -46.17065
+## C       0.1335567      -47.143358        213.3701       -62.98013
+## D       0.1198881     -154.909619        151.0709       -47.19983
+## E       0.1611013      -72.777531        142.6604       -58.94863
+##   magnet_forearm_x magnet_forearm_y magnet_forearm_z
+## A        -193.3924         472.5099         409.4298
+## B        -329.5414         283.8704         376.4835
+## C        -336.4324         501.5337         463.7043
+## D        -456.0518         314.0883         361.0352
+## E        -329.5787         275.2642         352.0514
+## 
+## Coefficients of linear discriminants:
+##                                LD1           LD2           LD3
+## roll_belt             5.649522e-02  0.0943648174 -3.249880e-03
+## pitch_belt            3.590056e-02  0.0008612646 -7.172208e-02
+## yaw_belt             -8.978467e-03 -0.0001801256 -1.249637e-02
+## total_accel_belt     -2.119596e-02 -0.0353425637 -2.715375e-01
+## gyros_belt_x          6.446424e-01  0.1784247934  8.112772e-01
+## gyros_belt_y         -1.405718e+00 -2.3344437232 -2.312674e-01
+## gyros_belt_z          4.872310e-01  0.5973441445  3.431693e-01
+## accel_belt_x         -2.504479e-03 -0.0006405676  2.210328e-02
+## accel_belt_y         -2.393967e-02 -0.0304428325  6.826723e-02
+## accel_belt_z          4.712920e-03  0.0269779239 -1.327749e-02
+## magnet_belt_x        -1.046310e-02  0.0010574349 -2.447020e-02
+## magnet_belt_y        -2.148778e-02 -0.0085204526  1.472566e-03
+## magnet_belt_z         7.273520e-03  0.0003454535  1.195430e-02
+## roll_arm              8.577685e-04  0.0006800050  2.741476e-03
+## pitch_arm            -3.284433e-03  0.0063987610  4.981598e-03
+## yaw_arm               1.289436e-03 -0.0007982935  1.907695e-03
+## total_accel_arm       5.611120e-03 -0.0240382313 -1.880655e-02
+## gyros_arm_x           1.416126e-01  0.0203780429 -6.708666e-02
+## gyros_arm_y           1.068470e-01 -0.0770045978 -1.287602e-01
+## gyros_arm_z          -1.527938e-01 -0.1542941758  3.630499e-03
+## accel_arm_x          -2.794115e-03 -0.0054355116 -8.193134e-03
+## accel_arm_y          -2.909173e-03  0.0141604868 -7.714707e-04
+## accel_arm_z           1.008470e-02 -0.0016104701  2.003220e-03
+## magnet_arm_x         -1.240542e-05 -0.0001902900  2.226629e-03
+## magnet_arm_y         -1.424143e-03 -0.0046656576  5.312029e-03
+## magnet_arm_z         -3.651872e-03 -0.0026634908 -5.478221e-03
+## roll_dumbbell         2.327490e-03 -0.0038890128 -3.125255e-03
+## pitch_dumbbell       -5.868935e-03 -0.0035974490 -5.106876e-03
+## yaw_dumbbell         -7.242959e-03  0.0066597204 -4.610153e-03
+## total_accel_dumbbell  7.250074e-02  0.0638422421  3.543396e-03
+## gyros_dumbbell_x      2.970818e-01 -0.5083324405  2.785041e-01
+## gyros_dumbbell_y      2.240482e-01 -0.2821645125  8.301537e-02
+## gyros_dumbbell_z      8.508923e-02 -0.3228212493  2.020707e-01
+## accel_dumbbell_x      1.341858e-02  0.0085038516  2.638376e-03
+## accel_dumbbell_y      2.337496e-03  0.0026763246  4.593502e-03
+## accel_dumbbell_z      2.450140e-03  0.0020142431  2.742294e-03
+## magnet_dumbbell_x    -4.554101e-03  0.0002282912  2.180338e-03
+## magnet_dumbbell_y    -1.021632e-03  0.0023037897 -1.296897e-03
+## magnet_dumbbell_z     1.333386e-02 -0.0101430310  8.730286e-04
+## roll_forearm          1.610977e-03  0.0012379317  4.142190e-04
+## pitch_forearm         1.568196e-02 -0.0121386821  4.884932e-03
+## yaw_forearm          -3.253767e-04  0.0008118644  5.401791e-04
+## total_accel_forearm   3.268720e-02  0.0057035164 -7.471152e-03
+## gyros_forearm_x      -2.938572e-02 -0.0585919385  2.013437e-01
+## gyros_forearm_y      -1.081742e-02 -0.0401962891  1.703762e-02
+## gyros_forearm_z       9.843579e-02  0.1280276391 -5.222231e-02
+## accel_forearm_x       3.504165e-03  0.0106126294 -4.641277e-04
+## accel_forearm_y       8.293439e-04 -0.0009829361 -5.959120e-04
+## accel_forearm_z      -7.243609e-03  0.0031012986  3.444276e-03
+## magnet_forearm_x     -1.853440e-03 -0.0034708590  1.407147e-05
+## magnet_forearm_y     -9.847898e-04 -0.0014731332  4.330715e-04
+## magnet_forearm_z     -9.896959e-05 -0.0014988437 -1.234246e-04
+##                                LD4
+## roll_belt             7.437515e-02
+## pitch_belt            1.058963e-02
+## yaw_belt             -3.323656e-03
+## total_accel_belt     -1.647085e-01
+## gyros_belt_x          4.393183e-01
+## gyros_belt_y          1.037218e+00
+## gyros_belt_z         -6.339175e-01
+## accel_belt_x          4.625602e-03
+## accel_belt_y          3.784646e-03
+## accel_belt_z          1.813767e-02
+## magnet_belt_x        -3.348903e-03
+## magnet_belt_y        -4.050266e-03
+## magnet_belt_z         3.004215e-03
+## roll_arm              3.596298e-04
+## pitch_arm             1.931164e-03
+## yaw_arm              -1.218043e-03
+## total_accel_arm      -1.863064e-02
+## gyros_arm_x           5.511171e-02
+## gyros_arm_y           2.250002e-01
+## gyros_arm_z           9.598779e-02
+## accel_arm_x          -2.019928e-03
+## accel_arm_y           4.044461e-03
+## accel_arm_z          -7.289432e-03
+## magnet_arm_x          1.157336e-03
+## magnet_arm_y          2.456200e-04
+## magnet_arm_z          2.057952e-03
+## roll_dumbbell        -7.886826e-03
+## pitch_dumbbell       -4.219958e-03
+## yaw_dumbbell         -2.842152e-03
+## total_accel_dumbbell  2.885832e-03
+## gyros_dumbbell_x      8.984055e-02
+## gyros_dumbbell_y      2.041633e-01
+## gyros_dumbbell_z      7.278278e-02
+## accel_dumbbell_x      5.981316e-03
+## accel_dumbbell_y     -1.977720e-03
+## accel_dumbbell_z      1.093532e-03
+## magnet_dumbbell_x    -2.437109e-03
+## magnet_dumbbell_y    -2.037918e-03
+## magnet_dumbbell_z     9.357192e-03
+## roll_forearm          1.388173e-03
+## pitch_forearm         6.348938e-05
+## yaw_forearm           1.092555e-03
+## total_accel_forearm   2.793970e-03
+## gyros_forearm_x       1.091122e-01
+## gyros_forearm_y       6.260318e-03
+## gyros_forearm_z      -4.553763e-02
+## accel_forearm_x       3.507701e-03
+## accel_forearm_y      -1.933926e-03
+## accel_forearm_z      -4.859742e-03
+## magnet_forearm_x     -1.023762e-03
+## magnet_forearm_y      3.746062e-04
+## magnet_forearm_z      1.129944e-03
+## 
+## Proportion of trace:
+##    LD1    LD2    LD3    LD4 
+## 0.4869 0.2412 0.1598 0.1121</code></pre>
+<pre class="r"><code>mypred&lt;-predict(mylda,newdata=datacv_clean)
+confusionMatrix(mypred,datacv_clean$classe)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    A    B    C    D    E
+##          A 1147  155   89   49   33
+##          B   33  590   70   37  158
+##          C  109  118  581   96   80
+##          D  101   40   94  588   78
+##          E    5   46   21   34  552
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.7051          
+##                  95% CI : (0.6922, 0.7179)
+##     No Information Rate : 0.2845          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.6266          
+##  Mcnemar's Test P-Value : &lt; 2.2e-16       
+## 
+## Statistics by Class:
+## 
+##                      Class: A Class: B Class: C Class: D Class: E
+## Sensitivity            0.8222   0.6217   0.6795   0.7313   0.6127
+## Specificity            0.9071   0.9247   0.9005   0.9237   0.9735
+## Pos Pred Value         0.7787   0.6644   0.5904   0.6526   0.8389
+## Neg Pred Value         0.9277   0.9106   0.9301   0.9460   0.9178
+## Prevalence             0.2845   0.1935   0.1743   0.1639   0.1837
+## Detection Rate         0.2339   0.1203   0.1185   0.1199   0.1126
+## Detection Prevalence   0.3004   0.1811   0.2007   0.1837   0.1342
+## Balanced Accuracy      0.8647   0.7732   0.7900   0.8275   0.7931</code></pre>
+<pre class="r"><code>table(mypred,datacv_clean$classe)</code></pre>
+<pre><code>##       
+## mypred    A    B    C    D    E
+##      A 1147  155   89   49   33
+##      B   33  590   70   37  158
+##      C  109  118  581   96   80
+##      D  101   40   94  588   78
+##      E    5   46   21   34  552</code></pre>
+</div>
 
 
 </div>

@@ -1,53 +1,119 @@
 ---
 title: "Practical Machine Learning Course Project"
 author: "Tan Woei Ming"
-date: "24 December 2015"
+date: "27 December 2015"
 output: html_document
 ---
 
-Path to repository: <http://twming.github.io/practicalmachinelearning/>
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# __A. Goal:__
+To predict the manner in which they did the exercise, which is the "classe" variable in the training set.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-
-```{r}
-summary(cars)
-```
-
-You can also embed plots, for example:
-```{r}
-
-```
-
-```{r}
-
-```
-
-
-```
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-Include library for the machine learning
-```{r}
+# __B. R code and steps to build/train a model:__
+##__B.1 Data exploration__
+Include the R library for the machine learning
+```{r }
 library(caret)
 library(useful)
 ```
 
-Read the train and test data
-```{r datatrain = read.csv("pml-training.csv")}
+Read in the training data, which consist of 19622 records, with 160 variables, including the "classe"s.
+```{r }
 datatrain = read.csv("pml-training.csv")
+```
+
+Data exploration to understand the each variable, or feature in the model. Remove the features with NA/NULL from the model building
+```{r summary(datatrain)}
+summary(datatrain)
+```
+
+##__B.2 Create the train and cross validation data set__
+Create the train (75%) and cross validation (25%) data set, called datatrain_clean and datacv_clean respectively.
+```{r }
+inTrain<-createDataPartition(y=datatrain$classe,p=0.75,list=FALSE)
+datatrain_clean<-datatrain[inTrain,8:160]
+datacv_clean<-datatrain[-inTrain,8:160]
+```
+
+Load the randomForest library and set the seed to 9747
+```{r }
+library(useful)
+library(randomForest)
+set.seed(9747)
+```
+
+Create the parameters for building for x and y in randomForest using the train data. Based on the data exploration, select the feature for model building
+```{r }
+rfdata<-classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z
+xrf<-build.x(rfdata,data=datatrain_clean)
+yrf<-build.y(rfdata,data=datatrain_clean)
+```
+
+The response and selected features:
+```{r}
+rfdata<-classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z
+```
+
+Create the parameters for building for xtest and ytest in randomForest using the cross validation data.
+```{r }
+rfdatapred<-classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z
+xrfpred<-build.x(rfdatapred,data=datacv_clean)
+yrfpred<-build.y(rfdatapred,data=datacv_clean)
+```
+
+##__B.3 Train the model__
+Set x and y using the train set, and xtest and ytest using the cross validation set. Set all other parameters as default.
+```{r}
+rfrtrain<-randomForest(x=xrf,y=yrf,xtest = xrfpred,ytest=yrfpred)
+rfrtrain
+```
+__The model could achieve >99% accuracy and sample error of 0.49%.__
+
+# __C. Predict the test data__
+Load the test data
+```{r }
 datatest = read.csv("pml-testing.csv")
 ```
 
-Data exploration to understand the data range of each feature
-```{r summary(datatrain)}
+Select the features for model fitting, the same features used by the training and cross validation. Also, add a dummy factor variable factor(c("A","B","C","D","E")) called "classe" for randomForest fitting.
+```{r}
+datatest_clean<-datatest[,8:159]
+datatest_clean[,"classe"]<-factor(c("A","B","C","D","E"))
+datatest_clean
+```
 
+Fit the test data into the model and predict the result. Extract the output:
+```{r }
+rfdatatest<-classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z
+xrftest<-build.x(rfdatatest,data=datatest_clean)
+yrftest<-build.y(rfdatatest,data=datatest_clean)
+rfresult<-randomForest(x=xrf,y=yrf,xtest = xrftest,ytest=yrftest)
+rfresult
+```
+
+```{r}
+rfpred<-rfresult["test"][[1]][1]
+rfpred
+```
+
+# __D. Conclusion__
+The randomForest model to train and predict "classe" is built and able to predict >99% accuracy. The model is also used to predict the 20 test case in the assignment.
+Path to repository:<https://github.com/twming/practicalmachinelearning/>
+
+# __--End of Report--__
+
+# __Appendix__
+Other models:
+LDA give ~70% accurary
+```{r }
+#train the model using lda
+set.seed(9747)
+mylda=train(classe~roll_belt+pitch_belt+yaw_belt+total_accel_belt+gyros_belt_x+gyros_belt_y+gyros_belt_z+accel_belt_x+accel_belt_y+accel_belt_z+magnet_belt_x+magnet_belt_y+magnet_belt_z+roll_arm+pitch_arm+yaw_arm+total_accel_arm+gyros_arm_x+gyros_arm_y+gyros_arm_z+accel_arm_x+accel_arm_y+accel_arm_z+magnet_arm_x+magnet_arm_y+magnet_arm_z+roll_dumbbell+pitch_dumbbell+yaw_dumbbell+total_accel_dumbbell+gyros_dumbbell_x+gyros_dumbbell_y+gyros_dumbbell_z+accel_dumbbell_x+accel_dumbbell_y+accel_dumbbell_z+magnet_dumbbell_x+magnet_dumbbell_y+magnet_dumbbell_z+roll_forearm+pitch_forearm+yaw_forearm+total_accel_forearm+gyros_forearm_x+gyros_forearm_y+gyros_forearm_z+accel_forearm_x+accel_forearm_y+accel_forearm_z+magnet_forearm_x+magnet_forearm_y+magnet_forearm_z,data=datatrain_clean,method="lda")
+
+#verify the model using the cross-validation dataset
+mylda$finalModel
+mypred<-predict(mylda,newdata=datacv_clean)
+confusionMatrix(mypred,datacv_clean$classe)
+table(mypred,datacv_clean$classe)
 ```
 
